@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts/test');
-});
+Route::get('/',[AuthController::class, 'main']);
+Route::post('/auth/register',[AuthController::class, 'user']);
+Route::get('/article',[ArticleController::class, 'index']);
