@@ -22,5 +22,5 @@
         </tbody>
     </table>
 </div>
-
+{{$info->links()}}
 @endsection
