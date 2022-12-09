@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -39,7 +40,14 @@ class ArticleController extends Controller
         $request -> validate([
             'date'=>'required','name'=>'required','shortdesc'=>'required','desc'=>'required'
         ]);
-        return response() -> json($request);
+        // return response() -> json($request);
+        $new = new Article();
+        $new -> date = request('date');
+        $new -> name = request('name');
+        $new -> shortdesc = request('shortdesc');
+        $new -> desc = request('desc');
+        $new -> save();
+        return redirect()-> route('article.show',['article'=> $new -> id]);
     }
 
     /**
@@ -50,7 +58,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        $comment = Comment::where('article_id', $article -> id)-> get();
+        return view('articles.show',['info'=>$article ,'comment'=> $comment]);
     }
 
     /**
@@ -61,7 +70,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles.update',['article' => $article]);
     }
 
     /**
@@ -73,7 +82,15 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request -> validate([
+            'date'=>'required','name'=>'required','shortdesc'=>'required','desc'=>'required'
+        ]);
+        $article -> date = $request -> date; 
+        $article -> name = $request -> name;
+        $article -> shortdesc = $request -> shortdesc;
+        $article -> desc = $request -> desc;
+        $article -> save();
+        return redirect()-> route('article.show',['article'=> $article -> id]);
     }
 
     /**
@@ -84,6 +101,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        Article::where('id', $article -> id)->delete();
+        return redirect() -> route('article.index',['info'=>$article]);
     }
 }

@@ -8,15 +8,23 @@
                 <th scope="col">Name</th>
                 <th scope="col">Short Descrtiption</th>
                 <th scope="col">Description</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             @foreach($info as $i)
             <tr class="">
                 <td scope="row">{{$i -> date}}</td>
-                <td>{{$i -> name}}</td>
+                <td><a href="/article/{{ $i-> id }}">{{$i -> name}}</a></td>
                 <td>{{$i -> shortdesc}}</td>
                 <td>{{$i -> desc}}</td>
+                <td>
+                    <form method="post" action="/article/{{$i -> id}}">
+                        @csrf
+                        {{method_field('DELETE')}}
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

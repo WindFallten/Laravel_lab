@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ArticleController;
 
 /*
@@ -20,3 +21,7 @@ Route::post('/auth/register',[AuthController::class, 'user']);
 // Route::get('/article',[ArticleController::class, 'index']);
 // Route::get('/article/create',[ArticleController::class, 'create']);
 Route::resource('article', ArticleController::class);
+Route::post('/comment',[CommentController::class, 'store']);
+Route::post('/comment/update/{comment}',[CommentController::class, 'update']);
+Route::get('/comment/edit/{comment}',[CommentController::class, 'edit']);
+Route::get('/comment/{comment}/delete',[CommentController::class, 'destroy']);

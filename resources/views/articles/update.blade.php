@@ -1,8 +1,9 @@
 @extends ('layouts.layout')
 @section ('content')
-<form action="/article" method="post" class="mb-5 mt-5">
+<form action="/article/{{$article -> id}}" method="post" class="m-5">
     @csrf
-    <p class="fw-bold text-start fs-2">Создать новость</p>
+    {{method_field('PUT')}}
+    <p class="fw-bold text-start fs-2">Изменение новости</p>
     <div class="mb-3">
     <label for="" class="form-label">Date</label>
     <input type="date"
