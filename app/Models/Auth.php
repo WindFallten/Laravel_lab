@@ -3,14 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Article extends Model
+class Auth extends Model
 {
     use HasFactory;
-    public function comment()
+    public function auth()
     {
-        return $this -> hasMany(Comment::class);
+        return $this -> hasMany(User::class);
     }
+    
 }
+

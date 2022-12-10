@@ -1,7 +1,7 @@
 @extends ('layouts.layout')
 @section ('content')
 <div class="table-responsive-md media-breakpoint-down(lg) mb-3 mt-3">
-    <table class="table table-primary">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th scope="col">Date</th>
@@ -11,7 +11,7 @@
                 <th scope="col"></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
             @foreach($info as $i)
             <tr class="">
                 <td scope="row">{{$i -> date}}</td>

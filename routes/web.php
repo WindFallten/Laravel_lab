@@ -16,11 +16,13 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-Route::get('/',[AuthController::class, 'main']);
-Route::post('/auth/register',[AuthController::class, 'user']);
+Route::get('/',[AuthController::class, 'index']);
+Route::post('/auth/store',[AuthController::class, 'store']);
+Route::get('/auth/registration',[AuthController::class, 'create']);
 // Route::get('/article',[ArticleController::class, 'index']);
 // Route::get('/article/create',[ArticleController::class, 'create']);
 Route::resource('article', ArticleController::class);
+Route::resource('auth', ArticleController::class);
 Route::post('/comment',[CommentController::class, 'store']);
 Route::post('/comment/update/{comment}',[CommentController::class, 'update']);
 Route::get('/comment/edit/{comment}',[CommentController::class, 'edit']);
